@@ -2,24 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-import AppTab from './AppTab';
-import AppList from './AppList';
-
-
-export default function App() {
+export default function AppList() {
   return (
-    <>
-    <AppTab/>
-    <StatusBar style='light'/>
-    </>
+    <View style={styles.container}>
+      <Text>List!</Text>
+      <StatusBar style="light" />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#D93600',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
