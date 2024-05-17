@@ -1,11 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 export default function AppForms() {
   return (
     <View style={styles.container}>
-      <Text>Form!</Text>
+      <Text style={styles.title}>Item para compra</Text>
+      <View style={styles.inputContainer}>
+        <TextInput 
+        style={styles.input} 
+        placeholder='O que está faltando em casa?'
+        clearButtonMode='always'/>
+      </View>
       <StatusBar style="light" />
     </View>
   );

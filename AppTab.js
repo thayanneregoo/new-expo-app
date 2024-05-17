@@ -28,8 +28,15 @@ function AppTab() {
                     tabBarIconStyle:{display:'none'}
                 }}
             >
-                <Screen name = "AppList" component ={AppList}/>
-                <Screen name = "AppForm" component ={AppForms}/>
+                <Screen name = "AppList" component ={AppList}
+                options={{
+                    tabBarLabel:"Compras"
+                }}/>
+                <Screen name = "AppForm" component ={AppForms}
+                               
+                options={{ 
+                tabBarLabel:"Adicionar"
+                }}/>
             </Navigator>
         </NavigationContainer>
 
