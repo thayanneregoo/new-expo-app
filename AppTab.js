@@ -32,14 +32,12 @@ function AppTab() {
                 options={{
                     tabBarLabel:"Compras"
                 }}/>
-                <Screen name = "AppForm" component ={AppForms}
-                               
+                <Screen name = "AppForm" component ={AppForms}               
                 options={{ 
                 tabBarLabel:"Adicionar"
                 }}/>
             </Navigator>
         </NavigationContainer>
-
     );
 }
 export default AppTab;

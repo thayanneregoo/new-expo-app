@@ -11,6 +11,15 @@ export default function AppForms() {
         style={styles.input} 
         placeholder='O que está faltando em casa?'
         clearButtonMode='always'/>
+
+        <TextInput style={styles.input}
+        placeholder='Digite a quantidade'
+        keyboardType={'numeric'}
+        clearButtonMode='always'/>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Salvar</Text>
+        </TouchableOpacity>
+
       </View>
       <StatusBar style="light" />
     </View>
@@ -20,8 +29,51 @@ export default function AppForms() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D93600',
+    backgroundColor: '#00d9d3',
     alignItems: 'center',
-    justifyContent: 'center',
   },
+title:{
+  color: '#fff',
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginTop: 50,
+  marginBottom:20
+},
+  inputCoontainer:{
+    flex: 1,
+    marginTop: 30,
+    width: '90%',
+    padding: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    alignItems: 'stretch',
+    backgroundColor: '#fff',
+  },
+  input:{
+    marginTop: 10,
+    height: 60,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    paddingHorizontal: 24,
+    fontSize: 16,
+    alignItems: 'stretch'
+  },
+  button:{
+    marginTop:10,
+    height: 60,
+    backgroundColor:'#0000002e',
+    borderRadius: 10,
+    paddingHorizontal: 24,
+    fontSize: 16,
+    alignItems: 'center',
+    justifyContent:'center',
+    elevation:20,
+    shadowOpacity:20,
+    shadowColor:'#ccc'
+  },
+  buttonText:{
+    color:'#fff',
+    fontWeight:'bold'
+  }
+  
 });
