@@ -1,8 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function AppForms() {
+export default function AppForms({navigation}) {
+  const [descricao, setDescricao] = useState('')
+  const [quantidade, setQuantidade] = useState('')
+  function handleDescripitionChange(descricao){
+    setDescricao(descricao)
+  }
+  function handleQuantityChange(quantidade){
+    setDescricao(quantidade)
+  }
+  function handleButtonPress(){
+    console.log({id:new Date().getTime(), descricao, quantidade})
+    navigation.navigate('')
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Item para compra</Text>
