@@ -1,35 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function AppForms({navigation}) {
+export default function AppForms({ navigation }) {
   const [descricao, setDescricao] = useState('')
   const [quantidade, setQuantidade] = useState('')
-  function handleDescripitionChange(descricao){
+  function handleDescripitionChange(descricao) {
     setDescricao(descricao)
   }
-  function handleQuantityChange(quantidade){
-    setDescricao(quantidade)
+  function handleQuantityChange(quantidade) {
+    setQuantidade(quantidade)
   }
-  function handleButtonPress(){
-    console.log({id:new Date().getTime(), descricao, quantidade})
-    navigation.navigate('')
+  async function handleButtonPress() {
+    const listItem={ id: new Date().getTime(), 
+      descricao, quantidade }
+    let saveItems = []
+    const response = await AsyncStorage.getItem('items');
+    if (response) saveItems= JSON.parse(response);
+    saveItems.push(listItem)
+    await AsyncStorage.setItem('items', JSON.stringify(saveItems))
+    navigation.navigate('AppList')
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Item para compra</Text>
       <View style={styles.inputContainer}>
-        <TextInput 
-        style={styles.input} 
-        placeholder='O que está faltando em casa?'
-        clearButtonMode='always'/>
+        <TextInput style={styles.input}
+          onChangeText={handleDescripitionChange}
+          placeholder='O que está faltando em casa?'
+          clearButtonMode='always' />
 
         <TextInput style={styles.input}
-        placeholder='Digite a quantidade'
-        keyboardType={'numeric'}
-        clearButtonMode='always'/>
-        <TouchableOpacity style={styles.button}>
+          onChangeText={handleQuantityChange}
+          placeholder='Digite a quantidade'
+          keyboardType={'numeric'}
+          clearButtonMode='always' />
+        <TouchableOpacity style={styles.button}
+          onPress={handleButtonPress}>
           <Text style={styles.buttonText}>Salvar</Text>
         </TouchableOpacity>
 
@@ -45,24 +54,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#00d9d3',
     alignItems: 'center',
   },
-title:{
-  color: '#fff',
-  fontSize: 20,
-  fontWeight: 'bold',
-  marginTop: 50,
-  marginBottom:20
-},
-  inputCoontainer:{
-    flex: 1,
-    marginTop: 30,
-    width: '90%',
-    padding: 20,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    alignItems: 'stretch',
-    backgroundColor: '#fff',
+  title: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 50,
+    marginBottom: 20
   },
-  input:{
+  // inputContainer: {
+  //   flex: 1,
+  //   marginTop: 30,
+  //   width: '90%',
+  //   padding: 20,
+  //   borderTopLeftRadius: 10,
+  //   borderTopRightRadius: 10,
+  //   alignItems: 'stretch',
+  //   backgroundColor: '#fff',
+  // },
+  input: {
     marginTop: 10,
     height: 60,
     backgroundColor: '#fff',
@@ -71,22 +80,22 @@ title:{
     fontSize: 16,
     alignItems: 'stretch'
   },
-  button:{
-    marginTop:10,
+  button: {
+    marginTop: 10,
     height: 60,
-    backgroundColor:'#0000002e',
+    backgroundColor: '#0000002e',
     borderRadius: 10,
     paddingHorizontal: 24,
     fontSize: 16,
     alignItems: 'center',
-    justifyContent:'center',
-    elevation:20,
-    shadowOpacity:20,
-    shadowColor:'#ccc'
+    justifyContent: 'center',
+    elevation: 20,
+    shadowOpacity: 20,
+    shadowColor: '#ccc'
   },
-  buttonText:{
-    color:'#fff',
-    fontWeight:'bold'
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold'
   }
-  
+
 });
